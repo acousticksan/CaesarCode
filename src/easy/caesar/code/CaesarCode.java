@@ -19,10 +19,7 @@ public class CaesarCode {
         originalString = originalString.toLowerCase(); //convert originalString string to lower case
         for(int i = 0; i < originalString.length(); i++){
             buf = originalString.charAt(i);
-            pos = alphabet.indexOf(buf) + step;
-            if(pos > lng){
-                pos = pos - lng;
-            }
+            pos = (alphabet.indexOf(buf) + step) % lng;
             resultString = resultString.concat(alphabet.substring(pos, pos+1));
         }
         System.out.println("Encrypted string: "+ resultString);
@@ -32,10 +29,7 @@ public class CaesarCode {
         originalString = originalString.toLowerCase(); //convert originalString string to lower case
         for(int i = 0; i < originalString.length(); i++){
             buf = originalString.charAt(i);
-            pos = alphabet.indexOf(buf) - step;
-            if(pos < 0){
-                pos = lng - pos;
-            }
+            pos = (alphabet.indexOf(buf) - step + lng) % lng;
             resultString = resultString.concat(alphabet.substring(pos, pos+1));
         }
         System.out.println("Decrypted string: "+ resultString);
