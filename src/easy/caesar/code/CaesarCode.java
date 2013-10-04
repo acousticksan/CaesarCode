@@ -6,7 +6,7 @@ public class CaesarCode {
     private String originalString; //originalString string
     private String resultString = (""); //resultString string
     private char buf; //buffer for one char
-    private static String alphabet = ("абвгдеёжзиклмнопрстуфхцчшщъыьэюя"); //alphabet
+    private static String alphabet = ("абвгдеёжзийклмнопрстуфхцчшщъыьэюя"); //alphabet
     private static int lng = 33; //length of alphabet
     private int pos; // position of char in alphabet
 
@@ -19,8 +19,12 @@ public class CaesarCode {
         originalString = originalString.toLowerCase(); //convert originalString string to lower case
         for(int i = 0; i < originalString.length(); i++){
             buf = originalString.charAt(i);
+            if (alphabet.indexOf(buf) >=0){
             pos = (alphabet.indexOf(buf) + step) % lng;
             resultString = resultString.concat(alphabet.substring(pos, pos+1));
+            } else {
+                resultString = resultString.concat(originalString.substring(i, i+1));
+            }
         }
         System.out.println("Encrypted string: "+ resultString);
     }
@@ -29,8 +33,12 @@ public class CaesarCode {
         originalString = originalString.toLowerCase(); //convert originalString string to lower case
         for(int i = 0; i < originalString.length(); i++){
             buf = originalString.charAt(i);
+            if (alphabet.indexOf(buf)>=0){
             pos = (alphabet.indexOf(buf) - step + lng) % lng;
             resultString = resultString.concat(alphabet.substring(pos, pos+1));
+            } else {
+                resultString = resultString.concat(originalString.substring(i, i+1));
+            }
         }
         System.out.println("Decrypted string: "+ resultString);
     }
